@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function() {
+const Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -25,11 +25,32 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+const GGPlayer = function() {
+
+    this.sprite = 'images\char-horn-girl.png';
+};
+
+GGPlayer.prototype.update = function(dt) {
+//function for GGPlayer's movements
+};
+
+//Draws GoodGuyPlayer on the screen
+GGPlayer.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+GGPlayer.prototype.handleInput = function(){
+    //I think this is to handle which keys do what?
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+
+const allEnemies = [];
+
 // Place the player object in a variable called player
 
+const player = GGPlayer;
 
 
 // This listens for key presses and sends the keys to your
