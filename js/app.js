@@ -1,11 +1,12 @@
 // Enemies our player must avoid
-const Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+const Enemy = function(x, y, speed) {
+    this.x = 0;
+    this.y = y + 55;
+    this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
+    this.step = 101;
+    this.boundary = this.step * 5;
+    this.resetPosition = this.x;
 };
 
 // Update the enemy's position, required method for game
@@ -14,6 +15,12 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if (this.x < this.boundary) {
+        //moves bugz
+        this.x += this.speed * dt;
+    } else {
+        this.x = this.resetPosition;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -90,9 +97,16 @@ GGPlayer.prototype.update = function(dt) {
 
 const player = new GGPlayer();
 
+const bug1 = new Enemy(-101, 0, 200);
+const bug2 = new Enemy(-101, 85, 140);
+const bug3 = new Enemy(-101, 175, 100);
+//const bug4 = new Enemy((bug3.x - 100), 190, 100);
+
 // Place all enemy objects in an array called allEnemies
 
 const allEnemies = [];
+allEnemies.push(bug1, bug2, bug3);
+console.log(allEnemies);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
