@@ -25,33 +25,66 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-const GGPlayer = function() {
+class GGPlayer {
+    constructor(){
+        this.sprite = 'images/char-horn-girl.png';
+        this.step = 101;
+        this.jump = 83;
+        this.startX = this.step *2 ;
+        this.startY = (this.jump *5) -15;
+        this.x = this.startX;
+        this.y = this.startY;
+    }
 
-    this.sprite = 'images\char-horn-girl.png';
-};
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+    /** 
+     * Update player's position
+      * @param {string} input 
+    */
+
+    handleInput(input) {
+        switch(input) {
+            case 'left':
+                this.x -= 20;
+                break;
+            case 'up':
+                this.y -= 20;
+                break;
+            case 'right':
+                this.x += 20;
+                break;
+            case 'down':
+                this.y += 20;
+                break;
+        }
+
+    }
+}
+
+
 
 GGPlayer.prototype.update = function(dt) {
 //function for GGPlayer's movements
 };
 
 //Draws GoodGuyPlayer on the screen
-GGPlayer.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
 
-GGPlayer.prototype.handleInput = function(){
+
+//GGPlayer.prototype.handleInput = function(){
     //I think this is to handle which keys do what?
-};
+//};
 
 // Now instantiate your objects.
+
+//initializes new object
+
+const player = new GGPlayer();
+
 // Place all enemy objects in an array called allEnemies
 
 const allEnemies = [];
-
-// Place the player object in a variable called player
-
-const player = GGPlayer;
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
