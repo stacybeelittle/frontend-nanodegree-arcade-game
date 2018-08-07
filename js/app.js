@@ -99,13 +99,13 @@ const player = new GGPlayer();
 
 const bug1 = new Enemy(-101, 0, 200);
 const bug2 = new Enemy(-101, 85, 140);
-const bug3 = new Enemy(-101, 175, 100);
-//const bug4 = new Enemy((bug3.x - 100), 190, 100);
+const bug3 = new Enemy(-101, 175, 90);
+const bug4 = new Enemy((bug3*2.5), 190, 30);
 
 // Place all enemy objects in an array called allEnemies
 
 const allEnemies = [];
-allEnemies.push(bug1, bug2, bug3);
+allEnemies.push(bug1, bug2,bug3, bug4);
 console.log(allEnemies);
 
 // This listens for key presses and sends the keys to your

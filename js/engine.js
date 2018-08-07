@@ -141,6 +141,21 @@ var Engine = (function(global) {
         renderEntities();
     }
 
+    //function to place rock representing the end of the game in top row.  
+
+    const Finish = function(x) {
+        this.x = 200;
+        this.y = 0-20;
+        this.sprite = 'images/Rock.png';
+      };
+      
+      Finish.prototype.render = function() {
+            ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+      };
+
+      const rock = new Finish(75);
+      
+
     /* This function is called by the render function and is called on each game
      * tick. Its purpose is to then call the render functions you have defined
      * on your enemy and player entities within app.js
@@ -154,6 +169,7 @@ var Engine = (function(global) {
         });
 
         player.render();
+        rock.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -173,7 +189,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-horn-girl.png'
+        'images/char-horn-girl.png',
+        'images/Rock.png'
     ]);
     Resources.onReady(init);
 
