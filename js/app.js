@@ -44,6 +44,7 @@ class GGPlayer {
         this.startY = (this.jump * 4) + 54;
         this.x = this.startX;
         this.y = this.startY;
+        this.winner = false;
     }
 
     render() {
@@ -85,18 +86,41 @@ class GGPlayer {
                 this.reset();
             }
         }
-    }
+        if(this.y === -29 && this.x === 303){
+            this.winner = true;
+        }else if 
+            (this.y === -29 && this.x != 303){
+                this.reset();
+            
+        }
+        //console.log(this.x, rock.x);
+
+}
+    
+
     reset(){
         //sets GGPlayer back to starting x,y coordinates
         this.y = this.startY;
         this.x = this.startX;
     }
+
 }
 
+    //function to place rock representing the end of the game in top row.  
 
-//initializes new object
+const Finish = function() {
+    this.x = 303;
+    this.y = -29;
+    this.sprite = 'images/Rock.png';
+    };
+    Finish.prototype.render = function() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
+
+    //initializes new objects
+
+const rock = new Finish();
 const player = new GGPlayer();
-
 const bug1 = new Enemy(-101, -1, 200);
 const bug2 = new Enemy(-101, 82, 140);
 const bug3 = new Enemy(-101, 165, 90);

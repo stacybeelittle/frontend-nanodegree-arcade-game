@@ -22,7 +22,8 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
+        lastTime,
+        id;
 
     canvas.width = 505;
     canvas.height = 606;
@@ -55,9 +56,12 @@ var Engine = (function(global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+        if (player.winner === true) {
+            win.cancelAnimationFrame(id);
+        } else {
+        id = win.requestAnimationFrame(main);
     }
-
+}
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
      * game loop.
@@ -141,19 +145,8 @@ var Engine = (function(global) {
         renderEntities();
     }
 
-    //function to place rock representing the end of the game in top row.  
 
-    const Finish = function(x) {
-        this.x = 200;
-        this.y = 0-20;
-        this.sprite = 'images/Rock.png';
-        };
-        Finish.prototype.render = function() {
-            ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-        };
 
-        const rock = new Finish(75);
-        
 
     /* This function is called by the render function and is called on each game
      * tick. Its purpose is to then call the render functions you have defined
