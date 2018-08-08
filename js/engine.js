@@ -28,9 +28,12 @@ var Engine = (function(global) {
     const replay = document.querySelector('.button');
 
     replay.addEventListener('click', function () {
-       toggleModal();
+        toggleModal();
         player.reset();
         player.winner = false;
+        const finishes = [0,101,202,303,404];
+        const finishPoint = finishes[Math.floor(Math.random() * finishes.length)];
+        rock.x = finishPoint;
         win.requestAnimationFrame(main);
     });
 

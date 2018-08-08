@@ -86,14 +86,13 @@ class GGPlayer {
                 this.reset();
             }
         }
-        if(this.y === -29 && this.x === 303){
+        if(this.y === rock.y && this.x === rock.x){
             this.winner = true;
         }else if 
-            (this.y === -29 && this.x != 303){
+            (this.y === rock.y && this.x != rock.x){
                 this.reset();
             
         }
-
 }
 
     reset(){
@@ -106,10 +105,12 @@ class GGPlayer {
 
 
 
-const Finish = function() {
-    this.x = 303;
+class Finish {
+    constructor(){
     this.y = -29;
     this.sprite = 'images/Rock.png';
+
+    }   
     };
     Finish.prototype.render = function() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
