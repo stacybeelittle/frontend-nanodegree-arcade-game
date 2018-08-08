@@ -31,5 +31,55 @@ body {
 
 .text {
     margin-top: 10%;
-}
+    color:#313131;
+    font-weight: bold;
+    -webkit-animation:colorchange 3s infinite alternate; 
+    }
+
+    @-webkit-keyframes colorchange {
+    0% {
+        
+        color: red;
+    } 
+    10% {
+        
+        color: #1b97eb;
+    } 
+    20% {
+        
+        color: #117460;
+    }
+    30% {
+        
+        color: #f32f15;
+    }
+    40% {
+        
+        color: blue;
+    }
+    50% {
+        
+        color: #f19a17;
+    }
+    60% {
+        
+        color: rgb(84, 236, 135);
+    }
+    70% {
+        
+        color: yellow;
+    }
+    80% {
+    
+        color: peachpuff;
+    }
+    90% {
+    
+        color: #f381d1;
+    }
+    100% {
+        
+        color: rgb(116, 192, 236);
+    }
+    }
 

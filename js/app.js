@@ -107,6 +107,9 @@ class GGPlayer {
 
 class Finish {
     constructor(){
+    const finishes = [0,101,202,303,404];
+    const finishPoint = finishes[Math.floor(Math.random() * finishes.length)];
+    this.x = finishPoint;    
     this.y = -29;
     this.sprite = 'images/Rock.png';
 
