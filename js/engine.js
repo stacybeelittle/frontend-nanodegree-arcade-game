@@ -25,6 +25,16 @@ var Engine = (function(global) {
         lastTime,
         id;
 
+    const replay = document.querySelector('.button');
+
+    replay.addEventListener('click', function () {
+       toggleModal();
+        player.reset();
+        player.winner = false;
+        win.requestAnimationFrame(main);
+    });
+
+
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
@@ -58,10 +68,13 @@ var Engine = (function(global) {
          */
         if (player.winner === true) {
             win.cancelAnimationFrame(id);
+            toggleModal();
         } else {
         id = win.requestAnimationFrame(main);
     }
 }
+
+
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
      * game loop.
@@ -83,7 +96,6 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -168,9 +180,13 @@ var Engine = (function(global) {
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
-    function reset() {
-        // noop
-    }
+
+function reset() {
+    //nada
+}
+
+
+
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when

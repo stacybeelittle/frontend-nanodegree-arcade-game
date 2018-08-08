@@ -93,10 +93,8 @@ class GGPlayer {
                 this.reset();
             
         }
-        //console.log(this.x, rock.x);
 
 }
-    
 
     reset(){
         //sets GGPlayer back to starting x,y coordinates
@@ -106,7 +104,7 @@ class GGPlayer {
 
 }
 
-    //function to place rock representing the end of the game in top row.  
+
 
 const Finish = function() {
     this.x = 303;
@@ -116,6 +114,15 @@ const Finish = function() {
     Finish.prototype.render = function() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
+
+
+    //function to toggle modals on and off
+function toggleModal() {
+    const modal = document.querySelector('.modal_1');
+    modal.classList.toggle('hide');
+        }
+
+        
 
     //initializes new objects
 
