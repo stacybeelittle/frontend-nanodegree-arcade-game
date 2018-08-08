@@ -93,7 +93,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        //player.update();
+        player.update();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -147,14 +147,13 @@ var Engine = (function(global) {
         this.x = 200;
         this.y = 0-20;
         this.sprite = 'images/Rock.png';
-      };
-      
-      Finish.prototype.render = function() {
+        };
+        Finish.prototype.render = function() {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-      };
+        };
 
-      const rock = new Finish(75);
-      
+        const rock = new Finish(75);
+        
 
     /* This function is called by the render function and is called on each game
      * tick. Its purpose is to then call the render functions you have defined
@@ -167,9 +166,9 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-
-        player.render();
         rock.render();
+        player.render();
+        
     }
 
     /* This function does nothing but it could have been a good place to

@@ -1,11 +1,13 @@
+
+
 // Enemies our player must avoid
 const Enemy = function(x, y, speed) {
     this.x = 0;
     this.y = y + 55;
     this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
-    this.step = 101;
-    this.boundary = this.step * 5;
+    this.step = 50;
+    this.boundary = this.step * 10;
     this.resetPosition = this.x;
 };
 
@@ -19,6 +21,7 @@ Enemy.prototype.update = function(dt) {
         //moves bugz
         this.x += this.speed * dt;
     } else {
+        //resets bug position to beginning of row
         this.x = this.resetPosition;
     }
 };
@@ -38,7 +41,7 @@ class GGPlayer {
         this.step = 101;
         this.jump = 83;
         this.startX = this.step *2 ;
-        this.startY = (this.jump *5) -15;
+        this.startY = (this.jump * 4) + 54;
         this.x = this.startX;
         this.y = this.startY;
     }
@@ -50,7 +53,6 @@ class GGPlayer {
      * Update player's position
       * @param {string} input 
     */
-
     handleInput(input) {
         switch(input) {
             case 'left':
@@ -74,39 +76,33 @@ class GGPlayer {
                 }
                 break;
         }
-
+    }
+    update() {
+        //check collision status
+        for(let enemy of allEnemies){
+            //check to see if player is in same position as an enemy
+            if(this.y === enemy.y && (enemy.x + enemy.step/2 > this.x && enemy.x < this.x + this.step/2) ) {
+                this.reset();
+            }
+        }
+    }
+    reset(){
+        //sets GGPlayer back to starting x,y coordinates
+        this.y = this.startY;
+        this.x = this.startX;
     }
 }
 
 
-
-GGPlayer.prototype.update = function(dt) {
-//function for GGPlayer's movements
-};
-
-//Draws GoodGuyPlayer on the screen
-
-
-//GGPlayer.prototype.handleInput = function(){
-    //I think this is to handle which keys do what?
-//};
-
-// Now instantiate your objects.
-
 //initializes new object
-
 const player = new GGPlayer();
 
-const bug1 = new Enemy(-101, 0, 200);
-const bug2 = new Enemy(-101, 85, 140);
-const bug3 = new Enemy(-101, 175, 90);
-const bug4 = new Enemy((bug3*2.5), 190, 30);
-
-// Place all enemy objects in an array called allEnemies
-
+const bug1 = new Enemy(-101, -1, 200);
+const bug2 = new Enemy(-101, 82, 140);
+const bug3 = new Enemy(-101, 165, 90);
+const bug4 = new Enemy((bug3*2.5), 165, 35);
 const allEnemies = [];
-allEnemies.push(bug1, bug2,bug3, bug4);
-console.log(allEnemies);
+allEnemies.push(bug1, bug2, bug3, bug4);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
